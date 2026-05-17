@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manasvi Noronha — Automotive Photography</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,700;0,900;1,300&family=Barlow:wght@300;400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script>
+    // Force scroll to top before any content renders — prevents browser scroll restore
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    window.scrollTo(0, 0);
+  </script>
+</head>
+<body>
+
+  <div id="progress"></div>
+
+  <!-- ── SINGLE-PHOTO LIGHTBOX ── -->
+  <div id="lightbox" role="dialog" aria-modal="true">
+    <span class="lb-close" onclick="closeLightbox()">✕</span>
+    <span class="lb-nav lb-prev" onclick="lbNav(-1)">←</span>
+    <img id="lb-img" src="" alt="">
+    <span class="lb-nav lb-next" onclick="lbNav(1)">→</span>
+    <span id="lb-counter" class="lb-counter"></span>
+  </div>
+
+  <!-- ── SECTION GRID MODAL ── -->
+  <div id="gm-bg-bleed"></div>
+  <div id="grid-modal-backdrop" onclick="closeGridModal()"></div>
+  <div id="grid-modal" role="dialog" aria-modal="true">
+    <div class="gm-card">
+      <div class="gm-header">
+        <p class="gm-title" id="gm-title"></p>
+        <button class="gm-close" onclick="closeGridModal()" aria-label="Close">✕</button>
+      </div>
+      <div class="gm-grid" id="gm-grid"></div>
+    </div>
+  </div>
+
+  <!-- ── NAV ── -->
+  <nav>
+    <a href="#hero" class="nav-logo">M. Noronha</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#legacy-in-motion">Legacy</a></li>
+      <li><a href="#la-auto-show">Auto Show</a></li>
+      <li><a href="#petersen">Petersen</a></li>
+      <li><a href="#balboa">Balboa</a></li>
+    </ul>
+  </nav>
+
+
+  <!-- ═══════════ HERO ═══════════ -->
+  <section id="hero">
+    <img class="hero-img" src="images/hero.jpg" alt="Audi — front grille and LED detail">
+    <div class="hero-overlay"></div>
+    <div class="hero-left">
+      <h1 class="hero-name">Manasvi<br>Noronha</h1>
+      <p class="hero-sub">Automotive Photography Portfolio</p>
+    </div>
+  </section>
+
+
+  <!-- ═══════════ ABOUT ═══════════ -->
+  <section id="about">
+    <div class="about-left reveal">
+      <!-- REPLACE:
+        <img class="about-photo-main" src="images/portrait.jpg" alt="Manasvi Noronha">
+        <img class="about-photo-inset" src="images/candid.jpg" alt="Behind the camera">
+      -->
+      <img class="about-photo-main" src="images/portrait.jpg" alt="Manasvi Noronha">
+    </div>
+    <div class="about-right">
+      <p class="section-label">About Me</p>
+      <h2 class="section-title reveal">Behind<br><em>The</em><br>Lens</h2>
+      <p class="about-body reveal reveal-delay-1">I'm an Interaction Design student at ArtCenter College of Design. My work spans UX, web development, and physical making, specifically focussing on projects driven by how design shapes the way people feel and move through the world. I'm working toward a future in automotive UX and technology, bringing that same human-centered sensitivity to the way people interact with vehicles.</p>
+      <p class="about-body reveal reveal-delay-2">Photography has been part of my life since childhood, a way of seeing that grew alongside me. As my love for cars deepened, the two passions naturally converged, and car photography became a serious hobby I keep returning to. This website is a compilation of the most memorable photos I’ve captured over the years.</p>
+      <div class="about-stats reveal reveal-delay-3">
+        <div><p class="stat-num">4</p><p class="stat-label">Events<br>Documented</p></div>
+        <div><p class="stat-num">~100</p><p class="stat-label">Frames<br>Selected</p></div>
+        <div><p class="stat-num">2</p><p class="stat-label">Years<br>Shooting</p></div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════ 01 — LEGACY IN MOTION ═══════════
+       Gallery: all src paths listed in data-gallery JSON.
+       Featured preview: 3 photos — 1 large left, 2 stacked right.
+       Update the photo-count-hint text to match your actual count.
+  ══════════════════════════════════════════════════ -->
+  <section id="legacy-in-motion" class="event-section"
+    data-gallery-title="ArtCenter — Legacy in Motion"
+    data-gallery='[
+      {"src":"images/lim/lim-04.jpg","alt":"Ferrari — front detail"},
+      {"src":"images/lim/lim-05.jpg","alt":"Multicolor Porsche 911 — front"},
+      {"src":"images/lim/lim-01.jpg","alt":"Cadillac Eldorado — wheel detail"},
+      {"src":"images/lim/lim-02.jpg","alt":"Race car — engine bay"},
+      {"src":"images/lim/lim-03.jpg","alt":"Blue classic — interior gauges"},
+      {"src":"images/lim/lim-08.jpg","alt":"Lamborghini Huracán — front"},
+      {"src":"images/lim/lim-15.jpg","alt":"Red Porsche 356 — front three-quarter"},
+      {"src":"images/lim/lim-06.jpg","alt":"Silver roadster — cockpit and gauges"},
+      {"src":"images/lim/lim-07.jpg","alt":"Red Italian sports car — interior"},
+      {"src":"images/lim/lim-09.jpg","alt":"Cadillac — front grille and badge"},
+      {"src":"images/lim/lim-13.jpg","alt":"Blue Mercedes — front chrome detail"},
+      {"src":"images/lim/lim-12.jpg","alt":"Dodge Viper — front with racing stripes"},
+      {"src":"images/lim/lim-14.jpg","alt":"Vintage Mustang — seat upholstery detail"},
+      {"src":"images/lim/lim-11.jpg","alt":"Oldsmobile Toronado — interior"},
+      {"src":"images/lim/lim-16.jpg","alt":"Lotus Emira — rear badge"},
+      {"src":"images/lim/lim-10.jpg","alt":"Boy in vintage car — ArtCenter hillside"}
+    ]'>
+
+    <div class="event-header">
+      <div class="event-meta">
+        <p class="event-num">01</p>
+        <p class="event-date reveal">ArtCenter — Pasadena, CA</p>
+      </div>
+      <div>
+        <h2 class="event-title reveal">ArtCenter<br><em>Legacy</em><br>In Motion</h2>
+        <p class="event-desc reveal reveal-delay-1">ArtCenter's annual Legacy in Motion brings together curated automobiles on campus — a rare intersection of design education and the cars that shaped it. Shot on ArtCenter's hillside campus.</p>
+      </div>
+    </div>
+
+    <!-- FEATURED PREVIEW: large left + 2×2 grid right (all 5 photos) -->
+    <div class="featured-preview featured-lim reveal">
+      <div class="preview-item preview-main" onclick="openLightboxSrc('images/lim/lim-04.jpg','Ferrari — front detail')">
+        <img src="images/lim/lim-04.jpg" alt="Ferrari — front detail">
+      
+      </div>
+      <div class="preview-grid-2x2">
+        <div class="preview-item" onclick="openLightboxSrc('images/lim/lim-05.jpg','Multicolor Porsche 911 — front')">
+          <img src="images/lim/lim-05.jpg" alt="Multicolor Porsche 911 — front">
+      
+        </div>
+        <div class="preview-item" onclick="openLightboxSrc('images/lim/lim-01.jpg','Cadillac Eldorado — wheel detail')">
+          <img src="images/lim/lim-01.jpg" alt="Cadillac Eldorado — wheel detail">
+      
+        </div>
+        <div class="preview-item" onclick="openLightboxSrc('images/lim/lim-02.jpg','Race car — engine bay')">
+          <img src="images/lim/lim-02.jpg" alt="Race car — engine bay">
+        
+        </div>
+        <div class="preview-item" onclick="openLightboxSrc('images/lim/lim-03.jpg','Blue classic — interior gauges')">
+          <img src="images/lim/lim-03.jpg" alt="Blue classic — interior gauges">
+  
+        </div>
+      </div>
+    </div>
+
+    <div class="see-more-bar reveal">
+      <span class="photo-count-hint">16 photographs in this series</span>
+      <button class="see-more-btn" onclick="openGridModal(this.closest('.event-section'))">
+        See All Photos <span class="btn-arrow">→</span>
+      </button>
+    </div>
+  </section>
+
+
+  <!-- ═══════════ 02 — LA AUTO SHOW ═══════════
+       Featured preview: 2 side-by-side
+  ═══════════════════════════════════════════ -->
+  <section id="la-auto-show" class="event-section"
+    data-gallery-title="Los Angeles Auto Show"
+    data-gallery='[
+      {"src":"images/laas/laas-03.jpg","alt":"Concept car — tail light sculpture"},
+      {"src":"images/laas/laas-01.jpg","alt":"Nissan Z Nismo — elevated on display"},
+      {"src":"images/laas/laas-02.jpg","alt":"Audi — front grille and LED detail"},
+      {"src":"images/laas/laas-07.jpg","alt":"Concept car — front fender and wheel arch"},
+      {"src":"images/laas/laas-08.jpg","alt":"Concept car — side profile and canopy"},
+      {"src":"images/laas/laas-09.jpg","alt":"Concept car — rear three-quarter"},
+      {"src":"images/laas/laas-04.jpg","alt":"Cadillac — deep red LED headlight detail"},
+      {"src":"images/laas/laas-14.jpg","alt":"Maserati MC20 — teal front three-quarter"},
+      {"src":"images/laas/laas-13.jpg","alt":"Maserati GranCabrio — yellow front three-quarter"},
+      {"src":"images/laas/laas-11.jpg","alt":"Corvette — orange hood and badge"},
+      {"src":"images/laas/laas-05.jpg","alt":"Dodge Charger — dark olive front"},
+      {"src":"images/laas/laas-10.jpg","alt":"Engine cutaway — mechanical detail"},
+      {"src":"images/laas/laas-06.jpg","alt":"VW Bus — blue and white front detail"},
+      {"src":"images/laas/laas-12.jpg","alt":"Hot rod — long exposure light trails"},
+      {"src":"images/laas/laas-15.jpg","alt":"Fast and Furious — Import display hall"},
+      {"src":"images/laas/laas-16.jpg","alt":"6ORCHID lowrider — open trunk with hydraulics"},
+      {"src":"images/laas/laas-17.jpg","alt":"Ford GT — black rear exhaust and carbon diffuser"},
+      {"src":"images/laas/laas-18.jpg","alt":"McLaren No.14 Alonso — orange Petrobras livery"},
+      {"src":"images/laas/laas-19.jpg","alt":"McLaren Marlboro Mercedes — red and white F1 livery"},
+      {"src":"images/laas/laas-20.jpg","alt":"McLaren Can-Am — Denny Hulme orange cockpit"},
+      {"src":"images/laas/laas-21.jpg","alt":"Porsche Carrera GT — dark grey front with single headlight"}
+    ]'>
+
+    <div class="event-header">
+      <div class="event-meta">
+        <p class="event-num">02</p>
+        <p class="event-date reveal">LA CONVENTION CENTER — Los Angeles, CA</p>
+      </div>
+      <div>
+        <h2 class="event-title reveal">Los Angeles<br><em>Auto</em><br>Show</h2>
+        <p class="event-desc reveal reveal-delay-1">The LA Auto Show is one of the world's largest and most influential annual automotive exhibitions. Spanning over 1,000,000 square feet, it serves as a massive showcase for new vehicle debuts, cutting-edge mobility tech, and SoCal's rich car culture.</p>
+      </div>
+    </div>
+
+    <!-- FEATURED PREVIEW: concept tail light large left + Nismo/Audi stacked right -->
+    <div class="featured-preview featured-1-2 reveal">
+      <div class="preview-item preview-main" onclick="openLightboxSrc('images/laas/laas-03.jpg','Concept car — tail light sculpture')">
+        <img src="images/laas/laas-03.jpg" alt="Concept car — tail light sculpture">
+
+      </div>
+      <div class="preview-stack">
+        <div class="preview-item" onclick="openLightboxSrc('images/laas/laas-01.jpg','Nissan Z Nismo — elevated on display')">
+          <img src="images/laas/laas-01.jpg" alt="Nissan Z Nismo — elevated on display">
+    
+        </div>
+        <div class="preview-item" onclick="openLightboxSrc('images/laas/laas-02.jpg','Audi — front grille and LED detail')">
+          <img src="images/laas/laas-02.jpg" alt="Audi — front grille and LED detail">
+  
+        </div>
+      </div>
+    </div>
+
+    <div class="see-more-bar reveal">
+      <span class="photo-count-hint">21 photographs in this series</span>
+      <button class="see-more-btn" onclick="openGridModal(this.closest('.event-section'))">
+        See All Photos <span class="btn-arrow">→</span>
+      </button>
+    </div>
+  </section>
+
+
+  <!-- ═══════════ 03 — PETERSEN ═══════════
+       Featured preview: full-width top + 2 below
+  ══════════════════════════════════════════ -->
+  <section id="petersen" class="event-section"
+    data-gallery-title="Petersen Automotive Museum"
+    data-gallery='[
+      {"src":"images/petersen/pet-01.jpg","alt":"Chevy Bel Air pair — orange and blue"},
+      {"src":"images/petersen/pet-02.jpg","alt":"Shelby Mustang — hood stripes and grille"},
+      {"src":"images/petersen/pet-03.jpg","alt":"Corvette Stingray — hood louvers"},
+      {"src":"images/petersen/pet-04.jpg","alt":"Porsche 918 — headlight detail"},
+      {"src":"images/petersen/pet-05.jpg","alt":"Maserati GranTurismo — headlight detail"},
+      {"src":"images/petersen/pet-08.jpg","alt":"Vector W8 — black wedge with design sketch"},
+      {"src":"images/petersen/pet-07.jpg","alt":"De Tomaso Pantera — blue fender and louvers"},
+      {"src":"images/petersen/pet-06.jpg","alt":"Bel Air — blue door mirror detail"},
+      {"src":"images/petersen/pet-09.jpg","alt":"Aston Martin Vantage — headlight cluster"},
+      {"src":"images/petersen/pet-10.jpg","alt":"Porsche 918 — second angle headlight"},
+      {"src":"images/petersen/pet-11.jpg","alt":"Aston Martin Bulldog — rear plate"},
+      {"src":"images/petersen/pet-12.jpg","alt":"Aston Martin One-77 — teal front three-quarter"},
+      {"src":"images/petersen/pet-13.jpg","alt":"Aston Martin One-77 — hood badge"},
+      {"src":"images/petersen/pet-14.jpg","alt":"Aston Martin One-77 — side profile with vents"},
+      {"src":"images/petersen/pet-15.jpg","alt":"Aston Martin One-77 — side and mirror wide"},
+      {"src":"images/petersen/pet-16.jpg","alt":"Aston Martin One-77 — door mirror close-up"},
+      {"src":"images/petersen/pet-17.jpg","alt":"Aston Martin One-77 — rear quarter and tail light"},
+      {"src":"images/petersen/pet-18.jpg","alt":"Aston Martin DB5 — green side profile"},
+      {"src":"images/petersen/pet-19.jpg","alt":"Aston Martin DB5 — green rear and California plate"},
+      {"src":"images/petersen/pet-20.jpg","alt":"Aston Martin DB5 — copper wiper mechanism"},
+      {"src":"images/petersen/pet-21.jpg","alt":"Aston Martin DB5 — Zagato door handle and badge"},
+      {"src":"images/petersen/pet-22.jpg","alt":"Cadillac — deep maroon front grille and badge"},
+      {"src":"images/petersen/pet-25.jpg","alt":"Pre-war red roadster — fender and wire wheel"},
+      {"src":"images/petersen/pet-26.jpg","alt":"Lincoln Continental — silver front overhead"},
+      {"src":"images/petersen/pet-27.jpg","alt":"Vintage black — chrome hood ornament"},
+      {"src":"images/petersen/pet-23.jpg","alt":"White hypercar — gold light reflections on bodywork"},
+      {"src":"images/petersen/pet-24.jpg","alt":"Hypercar interior — blue suede steering wheel and carbon"},
+      {"src":"images/petersen/pet-28.jpg","alt":"Mission Impossible — yellow Fiat 500 with film still"},
+      {"src":"images/petersen/pet-31.jpg","alt":"Chrysler Norseman — green concept through glass"},
+      {"src":"images/petersen/pet-29.jpg","alt":"Plymouth Barracuda — rusted headlight and blue hood"},
+      {"src":"images/petersen/pet-30.jpg","alt":"DeLorean time machine — interior dashboard"}
+    ]'>
+
+    <div class="event-header">
+      <div class="event-meta">
+        <p class="event-num">03</p>
+        <p class="event-date reveal">Petersen Automotive Museum — LA</p>
+      </div>
+      <div>
+        <h2 class="event-title reveal">Petersen<br><em>Automotive</em><br>Museum</h2>
+        <p class="event-desc reveal reveal-delay-1">The Petersen Automotive Museum is one of the world's largest and most prominent automotive museums. Located on Museum Row along Wilshire Boulevard in Los Angeles, California, it showcases the history, artistry, and cultural impact of the automobile.</p>
+      </div>
+    </div>
+
+    <!-- FEATURED PREVIEW: large left + 2×2 right (all 5 photos) -->
+    <div class="featured-preview featured-lim reveal">
+      <div class="preview-item preview-main" onclick="openLightboxSrc('images/petersen/pet-01.jpg','Chevy Bel Air pair — orange and blue')">
+        <img src="images/petersen/pet-01.jpg" alt="Chevy Bel Air pair — orange and blue">
+
+      </div>
+      <div class="preview-grid-2x2">
+        <div class="preview-item" onclick="openLightboxSrc('images/petersen/pet-02.jpg','Shelby Mustang — hood stripes and grille')">
+          <img src="images/petersen/pet-02.jpg" alt="Shelby Mustang — hood stripes and grille">
+
+        </div>
+        <div class="preview-item" onclick="openLightboxSrc('images/petersen/pet-03.jpg','Corvette Stingray — hood louvers')">
+          <img src="images/petersen/pet-03.jpg" alt="Corvette Stingray — hood louvers">
+
+        </div>
+        <div class="preview-item" onclick="openLightboxSrc('images/petersen/pet-04.jpg','Porsche 918 — headlight detail')">
+          <img src="images/petersen/pet-04.jpg" alt="Porsche 918 — headlight detail">
+ 
+        </div>
+        <div class="preview-item" onclick="openLightboxSrc('images/petersen/pet-05.jpg','Maserati GranTurismo — headlight detail')">
+          <img src="images/petersen/pet-05.jpg" alt="Maserati GranTurismo — headlight detail">
+
+        </div>
+      </div>
+    </div>
+
+    <div class="see-more-bar reveal">
+      <span class="photo-count-hint">31 photographs in this series</span>
+      <button class="see-more-btn" onclick="openGridModal(this.closest('.event-section'))">
+        See All Photos <span class="btn-arrow">→</span>
+      </button>
+    </div>
+  </section>
+
+
+  <!-- ═══════════ 04 — BALBOA PARK ═══════════
+       Featured preview: 2 stacked left + 1 large right
+  ══════════════════════════════════════════════ -->
+  <section id="balboa" class="event-section"
+    data-gallery-title="San Diego Automotive Museum — Balboa Park"
+    data-gallery='[
+      {"src":"images/balboa/bal-01.jpg","alt":"Enzo Has A Bad Day — Lamborghini exhibit with racing pit mural"},
+      {"src":"images/balboa/bal-02.jpg","alt":"Racing hall — Red Bull F1 and Santander Formula cars"},
+      {"src":"images/balboa/bal-03.jpg","alt":"Police cruiser — Chevrolet bear on the roof"},
+      {"src":"images/balboa/bal-04.jpg","alt":"Budweiser IndyCar — red single-seater with driver suit"},
+      {"src":"images/balboa/bal-05.jpg","alt":"Pit crew mural — red helmets and racing tyres close-up"},
+      {"src":"images/balboa/bal-06.jpg","alt":"Formula One hall — Senna, Renault, Red Bull and BRM lineup"},
+      {"src":"images/balboa/bal-07.jpg","alt":"VW Beetle interior — Electric Stove and ironing board"},
+      {"src":"images/balboa/bal-08.jpg","alt":"VW Beetle cockpit — Motor Trend on the seat"},
+      {"src":"images/balboa/bal-09.jpg","alt":"San Diego Highwayman — wagon under freeway sign"},
+      {"src":"images/balboa/bal-10.jpg","alt":"Stanley BRM No.22 and black single-seater — Formula One Stories"},
+      {"src":"images/balboa/bal-11.jpg","alt":"Footwork Porsche F1 — front three-quarter on display"},
+      {"src":"images/balboa/bal-12.jpg","alt":"Vintage black single-seater — cockpit and front suspension"},
+      {"src":"images/balboa/bal-13.jpg","alt":"Jaguar XK120 — windscreen and badge, Mercedes in background"},
+      {"src":"images/balboa/bal-14.jpg","alt":"Ethyl Mobil pump and San Diego Police cruiser"},
+      {"src":"images/balboa/bal-15.jpg","alt":"Mercedes 300SL racer — No.55 front three-quarter"},
+      {"src":"images/balboa/bal-16.jpg","alt":"San Diego Police No.68 — sprinkle donut on seat"}
+    ]'>
+
+    <div class="event-header">
+      <div class="event-meta">
+        <p class="event-num">04</p>
+        <p class="event-date reveal">Balboa Park — San Diego, CA</p>
+      </div>
+      <div>
+        <h2 class="event-title reveal">San Diego<br><em>Automotive</em><br>Museum</h2>
+        <p class="event-desc reveal reveal-delay-1">The San Diego Automotive Museum, located in historic Balboa Park, explores the cultural and technological evolution of motorized vehicles. It features over 75 classic cars and vintage motorcycles, including iconic vehicles like a Back to the Future DeLorean and Louie Mattar's famous custom Cadillac.</p>
+      </div>
+    </div>
+
+    <!-- FEATURED PREVIEW: exhibit wide left + F1 hall and bear stacked right -->
+    <div class="featured-preview featured-1-2 reveal">
+      <div class="preview-item preview-main" onclick="openLightboxSrc('images/balboa/bal-01.jpg','Enzo Has A Bad Day — Lamborghini exhibit with racing pit mural')">
+        <img src="images/balboa/bal-01.jpg" alt="Enzo Has A Bad Day — Lamborghini exhibit with racing pit mural">
+
+      </div>
+      <div class="preview-stack">
+        <div class="preview-item" onclick="openLightboxSrc('images/balboa/bal-02.jpg','Racing hall — Red Bull F1 and Santander Formula cars')">
+          <img src="images/balboa/bal-02.jpg" alt="Racing hall — Red Bull F1 and Santander Formula cars">
+
+        </div>
+        <div class="preview-item" onclick="openLightboxSrc('images/balboa/bal-03.jpg','Police cruiser — Chevrolet bear on the roof')">
+          <img src="images/balboa/bal-03.jpg" alt="Police cruiser — Chevrolet bear on the roof">
+  
+        </div>
+      </div>
+    </div>
+
+    <div class="see-more-bar reveal">
+      <span class="photo-count-hint">16 photographs in this series</span>
+      <button class="see-more-btn" onclick="openGridModal(this.closest('.event-section'))">
+        See All Photos <span class="btn-arrow">→</span>
+      </button>
+    </div>
+  </section>
+
+
+
+
+  <!-- ═══════════ CLOSING ═══════════ -->
+  <section id="closing">
+    <div>
+      <p class="section-label reveal">Get In Touch</p>
+      <h2 class="closing-title reveal">Let's<br><em>Talk</em><br>Cars.</h2>
+    </div>
+    <div class="closing-right reveal reveal-delay-2">
+      <p class="closing-body">Currently seeking opportunities in automotive photography and visual storytelling. Available for events, editorial, and museum work.</p>
+      <p class="closing-body" style="color:#DDFF55;font-family:var(--font-mono);font-size:0.75rem;letter-spacing:0.1em;">
+        manasvi.noronha99@gmail.com
+      </p>
+      <ul class="social-links">
+        <li><a href="https://instagram.com/mana.shoots" target="_blank">Instagram — @mana.shoots</a></li>
+        <li><a href="https://linkedin.com/in/manasvi-noronha" target="_blank">LinkedIn — Manasvi Noronha</a></li>
+  
+      </ul>
+    </div>
+  </section>
+
+  <div class="footer-bar">
+    <p class="footer-copy">© 2025 Manasvi Noronha — Automotive Photography</p>
+    <p class="footer-copy">ArtCenter College of Design — Pasadena, CA</p>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
